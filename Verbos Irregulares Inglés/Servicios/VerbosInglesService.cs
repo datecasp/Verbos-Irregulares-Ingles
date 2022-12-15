@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using Verbos_Irregulares_Inglés.Data;
 using Verbos_Irregulares_Inglés.Modelos;
 using Verbos_Irregulares_Inglés.Repositorio;
 
@@ -11,11 +13,12 @@ namespace Verbos_Irregulares_Inglés.Servicios
     public class VerbosInglesService
     {
         private DatosRandomService _datosRandomService;
-        private VerbosInglesRepositorio _verbosInglesRepository;
+        private VerbosInglesRepositorio _verbosInglesRepository = new();
         
         // Número de propiedades de VerbosIngles
         // Castellano, Presente, Pasado y Participio
         private int props = 4;
+        private int randomAtributo;
 
         public List<VerbosIngles> GetListaVerbosInglesService()
         {
@@ -25,8 +28,10 @@ namespace Verbos_Irregulares_Inglés.Servicios
         public AtributoRandom GetAtributoRandom(VerbosIngles verboIngles)
         {
             Random random = new Random();
-            random.Next(props);
-            switch (props)
+            randomAtributo = random.Next(props);
+            MessageBox.Show((props).ToString());
+
+            switch (randomAtributo)
             {
                 case 0:
                     return new AtributoRandom() {atributo = verboIngles.Castellano, posicion = 0 };
@@ -49,6 +54,8 @@ namespace Verbos_Irregulares_Inglés.Servicios
             {
                 datosTabla.Add(GetAtributoRandom(verbo));
             }
+            MessageBox.Show((datosTabla.Count).ToString());
+
             return datosTabla;    
         }
     }

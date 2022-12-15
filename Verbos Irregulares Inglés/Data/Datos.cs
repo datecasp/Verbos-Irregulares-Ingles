@@ -7,9 +7,9 @@ using Verbos_Irregulares_Inglés.Modelos;
 
 namespace Verbos_Irregulares_Inglés.Data
 {
-    public class Datos
+    public static class Datos
     {
-        public List<VerbosIngles> DatosList = new List<VerbosIngles>(new VerbosIngles[3] {
+        public static List<VerbosIngles> DatosList = new List<VerbosIngles>(new VerbosIngles[3] {
             new VerbosIngles("Caer", "Fall",
                 "Fell", "Fallen"),
             new VerbosIngles("Sentir", "Feel",
