@@ -16,10 +16,10 @@ namespace Verbos_Irregulares_Inglés.Modelos
 
     public class VerbosIngles : IVerbos
     {
-        private string _castellano;
-        private string _infinitivo;
-        private string _pasado;
-        private string _participio;
+        string _castellano;
+        string _infinitivo;
+        string _pasado;
+        string _participio;
 
         public VerbosIngles()
         {

@@ -26,13 +26,14 @@ namespace Verbos_Irregulares_Inglés
         private VerbosInglesService _verbosInglesService = new();
         private RellenarTabla _rellenarTabla = new();
         public static List<AtributoRandom> _randomList = new();
-        private string[,] arrayDatos2D; 
+        public string[,] arrayDatos2D;
+        public VerbosIngles[] arrayVerbos;
 
         public MainWindow()
         {
-            RellenarTabla();
 
             InitializeComponent();
+            RellenarTabla();
 
         }
 
@@ -43,9 +44,11 @@ namespace Verbos_Irregulares_Inglés
             
             _randomList = _verbosInglesService.GetDatosTabla();
             arrayDatos2D = new string[_randomList.Count, n];
+            arrayVerbos = new VerbosIngles[_randomList.Count]; 
             for (int i = 0; i < _randomList.Count; i++)
             {
-                arrayDatos2D[i, _randomList[i].posicion] = _randomList[i].atributo;
+                // switch tiempos verbales??
+                arrayVerbos[i] = _randomList[i].;
             }
 
             
