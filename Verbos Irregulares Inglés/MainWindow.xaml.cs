@@ -26,24 +26,34 @@ namespace Verbos_Irregulares_Inglés
         private VerbosInglesService _verbosInglesService = new();
         private RellenarTabla _rellenarTabla = new();
         public static List<AtributoRandom> _randomList = new();
+        private string[,] arrayDatos2D; 
+
         public MainWindow()
         {
+            RellenarTabla();
+
             InitializeComponent();
 
-            RellenarTabla();
         }
 
         public void RellenarTabla()
         {
+            // Número de tiempos verbales (columnas)
+            int n = 4;
+            
             _randomList = _verbosInglesService.GetDatosTabla();
-            txtCastellano01.Text = _rellenarTabla.SetDatoRandomCelda(_randomList, 0);
-            txtCastellano02.Text = _rellenarTabla.SetDatoRandomCelda(_randomList, 0);
-            txtCastellano03.Text = _rellenarTabla.SetDatoRandomCelda(_randomList, 0);
-            txtCastellano04.Text = _rellenarTabla.SetDatoRandomCelda(_randomList, 0);
-            txtCastellano05.Text = _rellenarTabla.SetDatoRandomCelda(_randomList, 1);
-            txtCastellano06.Text = _rellenarTabla.SetDatoRandomCelda(_randomList, 1);
-            txtCastellano07.Text = _rellenarTabla.SetDatoRandomCelda(_randomList, 1);
-            txtCastellano08.Text = _rellenarTabla.SetDatoRandomCelda(_randomList, 1);
+            arrayDatos2D = new string[_randomList.Count, n];
+            for (int i = 0; i < _randomList.Count; i++)
+            {
+                arrayDatos2D[i, _randomList[i].posicion] = _randomList[i].atributo;
+            }
+
+            
+            //for(int i = 0; i < _randomList.Count; i++)
+            //{
+            //    arrayDatos2D[i, _randomList[i].posicion] = _randomList[i].atributo;
+            //}
+            
         }
     }
 }

@@ -54,7 +54,7 @@ namespace Verbos_Irregulares_Inglés.Servicios
             {
                 datosTabla.Add(GetAtributoRandom(verbo));
             }
-            MessageBox.Show((datosTabla.Count).ToString());
+            MessageBox.Show(datosTabla[0].atributo.ToString()+ "  +  " + datosTabla[0].posicion.ToString()+"  +  " +datosTabla[1].atributo.ToString() + "  +  " + datosTabla[1].posicion.ToString() );
 
             return datosTabla;    
         }
