@@ -16,7 +16,6 @@ namespace Verbos_Irregulares_Inglés.Repositorio
         
         public List<VerbosIngles> ListaVerbosingles()
         {
-            MessageBox.Show(Datos.DatosList.Count.ToString());
             return Datos.DatosList;
         }
 

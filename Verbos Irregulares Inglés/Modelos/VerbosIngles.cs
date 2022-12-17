@@ -16,10 +16,10 @@ namespace Verbos_Irregulares_Inglés.Modelos
 
     public class VerbosIngles : IVerbos
     {
-        string _castellano;
-        string _infinitivo;
-        string _pasado;
-        string _participio;
+        string? _castellano;
+        string? _infinitivo;
+        string? _pasado;
+        string? _participio;
 
         public VerbosIngles()
         {
@@ -33,10 +33,10 @@ namespace Verbos_Irregulares_Inglés.Modelos
             this._participio = participio;
         }
 
-        public string Castellano { get { return _castellano; } }
-        public string Infinitivo { get { return _infinitivo; } }
-        public string Pasado { get { return _pasado; } }
-        public string Participio { get { return _participio; } }
+        public string Castellano { get { return _castellano; } set { _castellano = value; } }
+        public string Infinitivo { get { return _infinitivo; } set { _infinitivo = value; } }
+        public string Pasado { get { return _pasado; } set { _pasado = value; } }
+        public string Participio { get { return _participio; } set { _participio = value; } }
 
     }
 }

@@ -12,13 +12,23 @@ namespace Verbos_Irregulares_Inglés.Servicios
 {
     public class VerbosInglesService
     {
-        private DatosRandomService _datosRandomService;
         private VerbosInglesRepositorio _verbosInglesRepository = new();
         
         // Número de propiedades de VerbosIngles
         // Castellano, Presente, Pasado y Participio
-        private int props = 4;
+        private const int props = 4;
         private int randomAtributo;
+
+        public List<AtributoRandom> GetDatosTabla(List<VerbosIngles> verbosIngles)
+        {
+            List<AtributoRandom> datosTabla = new List<AtributoRandom>();
+            foreach (VerbosIngles verbo in verbosIngles)
+            {
+                datosTabla.Add(GetAtributoRandom(verbo));
+            }
+            
+            return datosTabla;    
+        }
 
         public List<VerbosIngles> GetListaVerbosInglesService()
         {
@@ -46,17 +56,5 @@ namespace Verbos_Irregulares_Inglés.Servicios
             }
         }
 
-        public List<AtributoRandom> GetDatosTabla()
-        {
-            List<AtributoRandom> datosTabla = new List<AtributoRandom>();
-            List<VerbosIngles> verbosIngles = GetListaVerbosInglesService();
-            foreach (VerbosIngles verbo in verbosIngles)
-            {
-                datosTabla.Add(GetAtributoRandom(verbo));
-            }
-            MessageBox.Show(datosTabla[0].atributo.ToString()+ "  +  " + datosTabla[0].posicion.ToString()+"  +  " +datosTabla[1].atributo.ToString() + "  +  " + datosTabla[1].posicion.ToString() );
-
-            return datosTabla;    
-        }
     }
 }

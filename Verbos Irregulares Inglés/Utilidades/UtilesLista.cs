@@ -7,8 +7,22 @@ using Verbos_Irregulares_Inglés.Modelos;
 
 namespace Verbos_Irregulares_Inglés.Utilidades
 {
-    public class RellenarTabla
+    public class UtilesLista
     {
+        public List<VerbosIngles> ResetearLista(List<VerbosIngles> lista, int numVerbos)
+        {
+            for (int i = 0; i < numVerbos; i++)
+            {
+                lista.Add(new VerbosIngles("", "","","")) ;
+                lista[i].Castellano = "";
+                lista[i].Infinitivo = "";
+                lista[i].Pasado = "";
+                lista[i].Participio = "";
+            }
+
+            return lista;
+        }
+
         public string SetDatoRandomCelda(List<AtributoRandom> lista, int numLista)
         {
             switch (lista[numLista].posicion) 
