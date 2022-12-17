@@ -12,12 +12,22 @@ namespace Verbos_Irregulares_Inglés.Repositorio
 {
     
 
-    public class VerbosInglesRepositorio {
-        
-        public List<VerbosIngles> ListaVerbosingles()
+    public class VerbosInglesRepositorio 
+    {
+        private List<VerbosIngles> listaTotal = Datos.DatosList;
+
+        public List<VerbosIngles> ListaVerbosingles(int numVerbos)
         {
-            return Datos.DatosList;
+            Random random = new Random(listaTotal.Count);
+            List<VerbosIngles> lista = new List<VerbosIngles>();
+            for (int i = 0; i < numVerbos; i++)
+            {
+                VerbosIngles verbos = listaTotal[random.Next(listaTotal.Count)];
+                lista.Add(verbos);
+            }
+            return lista;
         }
 
+       
     }
 }

@@ -9,6 +9,8 @@ namespace Verbos_Irregulares_Inglés.Utilidades
 {
     public class UtilesLista
     {
+        public const int NUMVERBOS = 5;
+
         public List<VerbosIngles> ResetearLista(List<VerbosIngles> lista, int numVerbos)
         {
             for (int i = 0; i < numVerbos; i++)

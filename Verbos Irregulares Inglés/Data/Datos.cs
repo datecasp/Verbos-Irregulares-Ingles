@@ -9,13 +9,19 @@ namespace Verbos_Irregulares_Inglés.Data
 {
     public static class Datos
     {
-        public static List<VerbosIngles> DatosList = new List<VerbosIngles>(new VerbosIngles[3] {
+        public static List<VerbosIngles> DatosList = new List<VerbosIngles>(new VerbosIngles[6] {
             new VerbosIngles("Caer", "Fall",
                 "Fell", "Fallen"),
             new VerbosIngles("Sentir", "Feel",
                 "Felt", "Felt"),
             new VerbosIngles("Alimentar", "Feed",
-                "Fed", "Fed")});
+                "Fed", "Fed"),
+            new VerbosIngles("Empezar", "Begin",
+                "Begun", "Began"),
+            new VerbosIngles("Conseguir", "Get",
+                "Got", "Gotten"),
+            new VerbosIngles("Comer", "Eat",
+                "Ate", "Eaten")});
 
 
     }
