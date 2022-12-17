@@ -20,20 +20,20 @@ namespace Verbos_Irregulares_Inglés.Repositorio
         public List<VerbosIngles> ListaVerbosingles(int numVerbos)
         {
             Random random = new Random();
-
-            randomActual = random.Next(numVerbos);
-            //Check not repeating
-            if(randomPrevios.Contains(randomActual)) 
-            {
-                randomActual = random.Next(numVerbos);         
-            }
-            randomPrevios.Add(randomActual);
-
             List<VerbosIngles> lista = new List<VerbosIngles>();
 
             for (int i = 0; i < numVerbos; i++)
             {
-                VerbosIngles verbos = listaTotal[random.Next(listaTotal.Count)];
+                //Check not repeating
+                do
+                {
+                    randomActual = random.Next(numVerbos);
+
+                } while (randomPrevios.Contains(randomActual));
+
+                randomPrevios.Add(randomActual);
+
+                VerbosIngles verbos = listaTotal[randomActual];
                 lista.Add(verbos);
             }
             return lista;
