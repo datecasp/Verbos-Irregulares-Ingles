@@ -16,7 +16,7 @@ namespace Verbos_Irregulares_Inglés.Servicios
         
         // Número de propiedades de VerbosIngles
         // Castellano, Presente, Pasado y Participio
-        private const int props = 4;
+        private const int tiemposVerbales = 4;
         private int randomAtributo;
 
         public List<AtributoRandom> GetDatosTabla(List<VerbosIngles> verbosIngles)
@@ -38,8 +38,7 @@ namespace Verbos_Irregulares_Inglés.Servicios
         public AtributoRandom GetAtributoRandom(VerbosIngles verboIngles)
         {
             Random random = new Random();
-            randomAtributo = random.Next(props);
-            MessageBox.Show((props).ToString());
+            randomAtributo = random.Next(tiemposVerbales);
 
             switch (randomAtributo)
             {
