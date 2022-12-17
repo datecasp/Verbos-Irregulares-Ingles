@@ -32,7 +32,7 @@ namespace Verbos_Irregulares_Inglés.Servicios
 
         public List<VerbosIngles> GetListaVerbosInglesService(int numVerbos)
         {
-            return _verbosInglesRepository.ListaVerbosingles(numVerbos);
+            return _verbosInglesRepository.ListaVerbosIngles(numVerbos);
         }
 
         public AtributoRandom GetAtributoRandom(VerbosIngles verboIngles)
@@ -55,5 +55,10 @@ namespace Verbos_Irregulares_Inglés.Servicios
             }
         }
 
+        public void ResetearListaRandoms()
+        {
+            _verbosInglesRepository.ResetearListaRandoms();
+            
+        }
     }
 }

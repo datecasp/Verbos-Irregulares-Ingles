@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Verbos_Irregulares_Inglés"
         mc:Ignorable="d"
         Title="Verbos Irregulares Inglés" Height="450" Width="800">
-    <StackPanel>
+    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
         <Grid x:Name="grdGridPrincipal" VerticalAlignment="Center" HorizontalAlignment="Center" ShowGridLines="True" Width="700" Height="300">
 
             <Grid.ColumnDefinitions>
@@ -24,10 +24,10 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <TextBlock FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Grid.Row="0" Grid.Column="0">CASTELLANO</TextBlock>
-            <TextBlock FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Grid.Row="0" Grid.Column="1">PRESENTE</TextBlock>
-            <TextBlock FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Grid.Row="0" Grid.Column="2">PASADO</TextBlock>
-            <TextBlock FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Grid.Row="0" Grid.Column="3">PARTICIPIO</TextBlock>
+            <TextBlock FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="175" Background="Aqua" FontWeight="Bold" Grid.Row="0" Grid.Column="0" TextAlignment="Center">CASTELLANO</TextBlock>
+            <TextBlock FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="175" Background="Aqua" FontWeight="Bold" Grid.Row="0" Grid.Column="1" TextAlignment="Center">PRESENTE</TextBlock>
+            <TextBlock FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="175" Background="Aqua" FontWeight="Bold" Grid.Row="0" Grid.Column="2" TextAlignment="Center">PASADO</TextBlock>
+            <TextBlock FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="175" Background="Aqua" FontWeight="Bold" Grid.Row="0" Grid.Column="3" TextAlignment="Center">PARTICIPIO</TextBlock>
             <TextBox x:Name="txtCastellano01" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="0" Margin="0,0,0,0" VerticalAlignment="Center" TextAlignment="Center" FontSize="16" Width="175" Height="50" Text="{Binding [0].Castellano, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBox x:Name="txtCastellano02" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1" Margin="0,0,0,0" VerticalAlignment="Center" TextAlignment="Center" FontSize="16" Width="175" Height="50" Text="{Binding [0].Infinitivo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBox x:Name="txtCastellano03" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="2" Margin="0,0,0,0" VerticalAlignment="Center" TextAlignment="Center" FontSize="16" Width="175" Height="50" Text="{Binding [0].Pasado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
@@ -49,6 +49,16 @@
             <TextBox x:Name="txtCastellano19" HorizontalAlignment="Center" Grid.Row="6" Grid.Column="2" Margin="0,0,0,0" VerticalAlignment="Center" TextAlignment="Center" FontSize="16" Width="175" Height="50" Text="{Binding [4].Pasado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBox x:Name="txtCastellano20" HorizontalAlignment="Center" Grid.Row="6" Grid.Column="3" Margin="0,0,0,0" VerticalAlignment="Center" TextAlignment="Center" FontSize="16" Width="175" Height="50" Text="{Binding [4].Participio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         </Grid>
-        <Button x:Name="btnComprobar" Width="100" Height="50" Margin="0,25,0,0" Click="ComprobarVerbos">Comprobar</Button>
+        <Grid x:Name="grdButtons" Margin="0,25,0,0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btnComprobar" Grid.Column="1" Width="100" Height="50" Click="ComprobarVerbos" Content="Comprobar" HorizontalContentAlignment="Center"/>
+            <Button x:Name="btnVolverJugar" Grid.Column="3" Width="100" Height="50" Click="VolverJugar" Content="Volver a jugar" HorizontalContentAlignment="Center"/>
+        </Grid>
     </StackPanel>
 </Window>

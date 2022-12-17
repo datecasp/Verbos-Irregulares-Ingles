@@ -17,7 +17,7 @@ namespace Verbos_Irregulares_Inglés.Repositorio
         private List<VerbosIngles> listaTotal = Datos.DatosList;
         private List<int> randomPrevios = new List<int>();
         private int randomActual = 0;
-        public List<VerbosIngles> ListaVerbosingles(int numVerbos)
+        public List<VerbosIngles> ListaVerbosIngles(int numVerbos)
         {
             Random random = new Random();
             List<VerbosIngles> lista = new List<VerbosIngles>();
@@ -39,6 +39,9 @@ namespace Verbos_Irregulares_Inglés.Repositorio
             return lista;
         }
 
-       
+        public void ResetearListaRandoms()
+        {
+            randomPrevios.Clear();
+        }
     }
 }

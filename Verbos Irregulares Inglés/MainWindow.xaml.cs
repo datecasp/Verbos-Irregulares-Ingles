@@ -15,7 +15,7 @@ namespace Verbos_Irregulares_Inglés
         private VerbosInglesService _verbosInglesService = new();
         private UtilesLista _utilesLista = new();
         public static List<AtributoRandom> _randomList = new();
-        public List<VerbosIngles>? listaVerbosCompleta,listaVerbos;
+        public List<VerbosIngles>? listaVerbosCompleta,listaVerbos = new();
         public const int NUMVERBOS = 5;
 
         public MainWindow()
@@ -31,7 +31,6 @@ namespace Verbos_Irregulares_Inglés
         {
             listaVerbosCompleta = _verbosInglesService.GetListaVerbosInglesService(NUMVERBOS);
             _randomList = _verbosInglesService.GetDatosTabla(listaVerbosCompleta);
-            listaVerbos = new List<VerbosIngles>();
             listaVerbos = _utilesLista.ResetearLista(listaVerbos, _randomList.Count);
 
 
@@ -76,6 +75,16 @@ namespace Verbos_Irregulares_Inglés
                     MessageBox.Show("Fallaste algo!");
                 }
             }
+        }
+
+        public void VolverJugar(object sender, RoutedEventArgs e)
+        {
+            _randomList.Clear();
+            _verbosInglesService.ResetearListaRandoms();
+            listaVerbosCompleta.Clear();
+            listaVerbos.Clear();
+            DataContext = null;
+            RellenarTabla();
         }
     }
 }
