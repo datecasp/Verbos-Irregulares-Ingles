@@ -61,6 +61,7 @@ namespace Verbos_Irregulares_Inglés
 
         public void ComprobarVerbos(object sender, RoutedEventArgs e)
         {
+            int aciertos = 0;
             for(int i = 0; i < listaVerbos.Count; i++)
             {
                 if(listaVerbos[i].Castellano == listaVerbosCompleta[i].Castellano
@@ -68,12 +69,29 @@ namespace Verbos_Irregulares_Inglés
                     && listaVerbos[i].Pasado == listaVerbosCompleta[i].Pasado
                     && listaVerbos[i].Participio == listaVerbosCompleta[i].Participio)
                 {
-                    MessageBox.Show("Correcto!");
+                    aciertos++;
                 }
-                else
-                {
-                    MessageBox.Show("Fallaste algo!");
-                }
+            }
+
+            if(aciertos < 1)
+            {
+                MessageBox.Show($"Has fallado todos los verbos. Sigue y no te desanimes!!");
+            }
+            else if(aciertos < 2)
+            {
+                MessageBox.Show($"Has acertado {aciertos} verbo y fallado {listaVerbos.Count-aciertos} verbos.");
+            }
+            else if( aciertos < 4)
+            {
+                MessageBox.Show($"Has acertado {aciertos} verbos y fallado {listaVerbos.Count - aciertos} verbos.");
+            }
+            else if (aciertos < 5)
+            {
+                MessageBox.Show($"Has acertado {aciertos} verbos y fallado {listaVerbos.Count - aciertos} verbo.");
+            }
+            else
+            {
+                MessageBox.Show("Has acertado todos los verbos!! ENHORABUENA!!");
             }
         }
 
