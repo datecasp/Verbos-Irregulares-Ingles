@@ -17,7 +17,7 @@ namespace Verbos_Irregulares_Inglés.Repositorio
         private List<VerbosIngles> listaTotal = Datos.DatosList;
         private List<int> randomPrevios = new List<int>();
         private int randomActual = 0;
-        public List<VerbosIngles> ListaVerbosIngles(int numVerbos)
+        public List<VerbosIngles> ListaVerbosIngles(int totalVerbos, int numVerbos)
         {
             Random random = new Random();
             List<VerbosIngles> lista = new List<VerbosIngles>();
@@ -27,7 +27,7 @@ namespace Verbos_Irregulares_Inglés.Repositorio
                 //Check not repeating
                 do
                 {
-                    randomActual = random.Next(numVerbos);
+                    randomActual = random.Next(totalVerbos);
 
                 } while (randomPrevios.Contains(randomActual));
 

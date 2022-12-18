@@ -15,8 +15,18 @@ namespace Verbos_Irregulares_Inglés
         private VerbosInglesService _verbosInglesService = new();
         private UtilesLista _utilesLista = new();
         public static List<AtributoRandom> _randomList = new();
-        public List<VerbosIngles>? listaVerbosCompleta,listaVerbos = new();
+        public List<VerbosIngles>? listaVerbos,listaVerbosMostrada = new();
+        public List<int> listaCeldasAcertadas = new();
+        public List<int> listaCeldasMostradas = new();
+        
+        // numero de verbos que salen en la pantalla
         public const int NUMVERBOS = 5;
+
+        // numero de verbos totales en la lista
+        public const int NUMTOTALVERBOS = 29;
+
+        // numero de tiempos verbales
+        public const int TIEMPOS = 4;
 
         public MainWindow()
         {
@@ -29,9 +39,9 @@ namespace Verbos_Irregulares_Inglés
 
         public void RellenarTabla()
         {
-            listaVerbosCompleta = _verbosInglesService.GetListaVerbosInglesService(NUMVERBOS);
-            _randomList = _verbosInglesService.GetDatosTabla(listaVerbosCompleta);
-            listaVerbos = _utilesLista.ResetearLista(listaVerbos, _randomList.Count);
+            listaVerbos = _verbosInglesService.GetListaVerbosInglesService(NUMTOTALVERBOS, NUMVERBOS);
+            _randomList = _verbosInglesService.GetDatosTabla(listaVerbos);
+            listaVerbosMostrada = _utilesLista.ResetearLista(listaVerbosMostrada, _randomList.Count);
 
 
             for (int i = 0; i < _randomList.Count; i++)
@@ -39,68 +49,111 @@ namespace Verbos_Irregulares_Inglés
                 switch (_randomList[i].posicion)
                 {
                     case 0:
-                        listaVerbos[i].Castellano = _randomList[i].atributo;
+                        listaVerbosMostrada[i].Castellano = _randomList[i].atributo;
+                        listaCeldasMostradas.Add((i + 1) * TIEMPOS);
                         break;
                     case 1:
-                        listaVerbos[i].Infinitivo = _randomList[i].atributo;
+                        listaVerbosMostrada[i].Infinitivo = _randomList[i].atributo;
+                        listaCeldasMostradas.Add(((i + 1) * TIEMPOS) + _randomList[i].posicion);
                         break;
                     case 2:
-                        listaVerbos[i].Pasado = _randomList[i].atributo; 
+                        listaVerbosMostrada[i].Pasado = _randomList[i].atributo;
+                        listaCeldasMostradas.Add(((i + 1) * TIEMPOS) + _randomList[i].posicion);
                         break;
                     case 3:
-                        listaVerbos[i].Participio = _randomList[i].atributo;
+                        listaVerbosMostrada[i].Participio = _randomList[i].atributo;
+                        listaCeldasMostradas.Add(((i + 1) * TIEMPOS) + _randomList[i].posicion);
                         break;
                     default:
                         break;
                 }
             }
 
-            this.DataContext = listaVerbos;
+            CambiarEnabled(listaCeldasMostradas);
+            
+            this.DataContext = listaVerbosMostrada;
 
+        }
+
+        private void CambiarEnabled(List<int> listaCeldas)
+        {
+            foreach (int celda in listaCeldas)
+            {
+                grdGridPrincipal.Children[celda].IsEnabled = !grdGridPrincipal.Children[celda].IsEnabled;
+            }
         }
 
         public void ComprobarVerbos(object sender, RoutedEventArgs e)
         {
             int aciertos = 0;
-            for(int i = 0; i < listaVerbos.Count; i++)
+            for(int i = 0; i < listaVerbosMostrada.Count; i++)
             {
-                if(listaVerbos[i].Castellano == listaVerbosCompleta[i].Castellano
-                    && listaVerbos[i].Infinitivo == listaVerbosCompleta[i].Infinitivo
-                    && listaVerbos[i].Pasado == listaVerbosCompleta[i].Pasado
-                    && listaVerbos[i].Participio == listaVerbosCompleta[i].Participio)
+                if(listaVerbosMostrada[i].Castellano.ToLower() == listaVerbos[i].Castellano.ToLower()) 
+                { 
+                    aciertos++;
+                    listaCeldasAcertadas.Add(i + TIEMPOS);
+                }
+                if(listaVerbosMostrada[i].Infinitivo.ToLower() == listaVerbos[i].Infinitivo.ToLower()) 
                 {
                     aciertos++;
+                    listaCeldasAcertadas.Add(i + TIEMPOS + 1);
+                }
+                if (listaVerbosMostrada[i].Pasado.ToLower() == listaVerbos[i].Pasado.ToLower()) 
+                {
+                    aciertos++;
+                    listaCeldasAcertadas.Add(i + TIEMPOS + 2);
+                }
+                if (listaVerbosMostrada[i].Participio.ToLower() == listaVerbos[i].Participio.ToLower()) 
+                {
+                    aciertos++;
+                    listaCeldasAcertadas.Add(i + TIEMPOS + 3);
                 }
             }
 
+            // Restamos los aciertos de las celdas rellenas por el programa
+            aciertos -= 5;
+
+            PintaFondos(listaCeldasAcertadas);
+
             if(aciertos < 1)
             {
-                MessageBox.Show($"Has fallado todos los verbos. Sigue y no te desanimes!!");
+                MessageBox.Show($"Has fallado todos las veces. Sigue y no te desanimes!!");
             }
             else if(aciertos < 2)
             {
-                MessageBox.Show($"Has acertado {aciertos} verbo y fallado {listaVerbos.Count-aciertos} verbos.");
+                MessageBox.Show($"Has acertado {aciertos} vez y fallado {(listaVerbos.Count*3)-aciertos} veces.");
             }
-            else if( aciertos < 4)
+            else if( aciertos < (listaVerbos.Count*3)-1)
             {
-                MessageBox.Show($"Has acertado {aciertos} verbos y fallado {listaVerbos.Count - aciertos} verbos.");
+                MessageBox.Show($"Has acertado {aciertos} veces y fallado {(listaVerbos.Count*3) - aciertos} veces.");
             }
-            else if (aciertos < 5)
+            else if (aciertos < (listaVerbos.Count*3))
             {
-                MessageBox.Show($"Has acertado {aciertos} verbos y fallado {listaVerbos.Count - aciertos} verbo.");
+                MessageBox.Show($"Has acertado {aciertos} veces y fallado {(listaVerbos.Count*3) - aciertos} vez.");
             }
             else
             {
-                MessageBox.Show("Has acertado todos los verbos!! ENHORABUENA!!");
+                MessageBox.Show("Has acertado todos las veces!! ENHORABUENA!!");
             }
+        }
+
+        public void PintaFondos(List<int> lista)
+        {
+            for (int i = 0; i < listaVerbos.Count * 3; i++)
+                if (!lista.Contains(i + 4))
+                {
+                }
+            
         }
 
         public void VolverJugar(object sender, RoutedEventArgs e)
         {
+            CambiarEnabled(listaCeldasMostradas);
             _randomList.Clear();
             _verbosInglesService.ResetearListaRandoms();
-            listaVerbosCompleta.Clear();
             listaVerbos.Clear();
+            listaVerbosMostrada.Clear();
+            listaCeldasMostradas.Clear();
             DataContext = null;
             RellenarTabla();
         }

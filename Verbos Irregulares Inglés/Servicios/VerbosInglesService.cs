@@ -30,9 +30,9 @@ namespace Verbos_Irregulares_Inglés.Servicios
             return datosTabla;    
         }
 
-        public List<VerbosIngles> GetListaVerbosInglesService(int numVerbos)
+        public List<VerbosIngles> GetListaVerbosInglesService(int totalVerbos, int numVerbos)
         {
-            return _verbosInglesRepository.ListaVerbosIngles(numVerbos);
+            return _verbosInglesRepository.ListaVerbosIngles(totalVerbos, numVerbos);
         }
 
         public AtributoRandom GetAtributoRandom(VerbosIngles verboIngles)
