@@ -12,24 +12,33 @@ namespace Verbos_Irregulares_Inglés.Servicios
 {
     public class VerbosInglesService
     {
-        private DatosRandomService _datosRandomService;
         private VerbosInglesRepositorio _verbosInglesRepository = new();
         
         // Número de propiedades de VerbosIngles
         // Castellano, Presente, Pasado y Participio
-        private int props = 4;
+        private const int tiemposVerbales = 4;
         private int randomAtributo;
 
-        public List<VerbosIngles> GetListaVerbosInglesService()
+        public List<AtributoRandom> GetDatosTabla(List<VerbosIngles> verbosIngles)
         {
-            return _verbosInglesRepository.ListaVerbosingles();
+            List<AtributoRandom> datosTabla = new List<AtributoRandom>();
+            foreach (VerbosIngles verbo in verbosIngles)
+            {
+                datosTabla.Add(GetAtributoRandom(verbo));
+            }
+            
+            return datosTabla;    
+        }
+
+        public List<VerbosIngles> GetListaVerbosInglesService(int totalVerbos, int numVerbos)
+        {
+            return _verbosInglesRepository.ListaVerbosIngles(totalVerbos, numVerbos);
         }
 
         public AtributoRandom GetAtributoRandom(VerbosIngles verboIngles)
         {
             Random random = new Random();
-            randomAtributo = random.Next(props);
-            MessageBox.Show((props).ToString());
+            randomAtributo = random.Next(tiemposVerbales);
 
             switch (randomAtributo)
             {
@@ -46,17 +55,10 @@ namespace Verbos_Irregulares_Inglés.Servicios
             }
         }
 
-        public List<AtributoRandom> GetDatosTabla()
+        public void ResetearListaRandoms()
         {
-            List<AtributoRandom> datosTabla = new List<AtributoRandom>();
-            List<VerbosIngles> verbosIngles = GetListaVerbosInglesService();
-            foreach (VerbosIngles verbo in verbosIngles)
-            {
-                datosTabla.Add(GetAtributoRandom(verbo));
-            }
-            MessageBox.Show(datosTabla[0].atributo.ToString()+ "  +  " + datosTabla[0].posicion.ToString()+"  +  " +datosTabla[1].atributo.ToString() + "  +  " + datosTabla[1].posicion.ToString() );
-
-            return datosTabla;    
+            _verbosInglesRepository.ResetearListaRandoms();
+            
         }
     }
 }
