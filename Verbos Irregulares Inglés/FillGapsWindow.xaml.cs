@@ -119,8 +119,15 @@ namespace Verbos_Irregulares_Inglés
             {
                 for (int i = 0; i < palabraGapChar.Length / 2; i++)
                 {
-                    int index = rd.Next(palabraGapChar.Length);
-                    result[index] = palabraGapChar[index];
+                    if (!Char.IsLetter(palabraGapChar[i])) 
+                    { 
+                        result[i] = palabraGapChar[i]; 
+                    }
+                    else
+                    {
+                        int index = rd.Next(palabraGapChar.Length);
+                        result[index] = palabraGapChar[index];
+                    }
                 }
             }
             return result;
