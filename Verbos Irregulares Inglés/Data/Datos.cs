@@ -26,7 +26,7 @@ namespace Verbos_Irregulares_Inglés.Data
                 "Did", "Done"),
             new VerbosIngles("Soñar", "Dream",
                 "Dreamt", "Dreamt"),
-            new VerbosIngles("Ser Estar", "Is Are",
+            new VerbosIngles("Ser/Estar", "Is/Are",
                 "Was/Were", "Been"),
             new VerbosIngles("Romper", "Break",
                 "Broke", "Broken"),
