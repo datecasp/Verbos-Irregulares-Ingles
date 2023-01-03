@@ -81,8 +81,8 @@ namespace Verbos_Irregulares_Inglés
             txtPlayGameGap.Text = $"The gapped word in {getTiempoVerbal(atrRandomGap.posicion)} is...";
             
             
-            pintaBtnGrids(creaGridPalabraGap(palabraGapChar), palabraGapButtons, palabraGapPistasChar, "pistas");
-            pintaBtnGrids(creaGridLetrasAzar(letrasAzarChar), letrasAzarButtons, letrasAzarChar, "azar");
+            pintaBtnGrids(creaGridPalabraGap(palabraGapChar), ref palabraGapButtons, palabraGapPistasChar, "pistas");
+            pintaBtnGrids(creaGridLetrasAzar(letrasAzarChar), ref letrasAzarButtons, letrasAzarChar, "azar");
         }
 
         private string getTiempoVerbal(int posicion)
@@ -234,14 +234,14 @@ namespace Verbos_Irregulares_Inglés
          *  -Pintar las letras de la palabra dentro de los botones correspondientes
          *  
          */
-        private void pintaBtnGrids(Grid gridLetters, Button[] charButtons,char[] arrayChars, string flagTipoBtn)
+        private void pintaBtnGrids(Grid gridLetters, ref Button[] charButtons,char[] arrayChars, string flagTipoBtn)
         {
 
             if (acierto == 0)
             {
+                charButtons = new Button[arrayChars.Length];
                 for (int i = arrayChars.GetLowerBound(0); i <= arrayChars.GetUpperBound(0); i++)
                 {
-                    charButtons = new Button[arrayChars.Length];
                     gridLetters.ColumnDefinitions.Add(new ColumnDefinition());
 
                     if (flagTipoBtn.Equals("pistas"))
@@ -304,7 +304,7 @@ namespace Verbos_Irregulares_Inglés
 
         private void chequeaPalabraGapButtons()
         {
-            bool completa = true;
+            int completa = 0;
             bool bien = true;
             char[] respuesta = new char[palabraGapChar.Length];
             for (int i = 0; i < palabraGapChar.Length; i++)
@@ -313,16 +313,14 @@ namespace Verbos_Irregulares_Inglés
                 ///
 
 
-                if (!Char.IsLetter((Char)(palabraGapButtons[i].Content)))
+                //if (!Char.IsLetter((Char)(this.palabraGapButtons[i].Content)))
+                if(Char.IsLetter(char.Parse(palabraGapButtons[i].Content.ToString())))
                 {
-                    completa = false;
-                }
-                else
-                {
-                    respuesta[i] = palabraGapButtons[i].Content;
+                    respuesta[i] = char.Parse(palabraGapButtons[i].Content.ToString());
+                    completa ++;
                 }
             }
-            if (completa)
+            if (completa == palabraGapChar.Length)
             {
                 for(int i = 0; i < palabraGapChar.Length; i++)
                 {
