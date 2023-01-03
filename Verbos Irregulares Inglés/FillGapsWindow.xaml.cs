@@ -39,7 +39,7 @@ namespace Verbos_Irregulares_Inglés
 
         public int acierto = 0;
         public int numLetras = 0;
-        int index = 0;
+        public string letraButton = "";
 
         //public string[] palabraTapada;
 
@@ -81,11 +81,8 @@ namespace Verbos_Irregulares_Inglés
             txtPlayGameGap.Text = $"The gapped word in {getTiempoVerbal(atrRandomGap.posicion)} is...";
             
             
-            pintaBtnGrids(creaGridPalabraGap(palabraGapChar), palabraGapButtons, palabraGapPistasChar);
-
-
-            //Revisar este método. Crea Grid y arrayLetrasAzar
-            pintaBtnGrids(creaGridLetrasAzar(letrasAzarChar), letrasAzarButtons, letrasAzarChar);
+            pintaBtnGrids(creaGridPalabraGap(palabraGapChar), palabraGapButtons, palabraGapPistasChar, "pistas");
+            pintaBtnGrids(creaGridLetrasAzar(letrasAzarChar), letrasAzarButtons, letrasAzarChar, "azar");
         }
 
         private string getTiempoVerbal(int posicion)
@@ -237,19 +234,34 @@ namespace Verbos_Irregulares_Inglés
          *  -Pintar las letras de la palabra dentro de los botones correspondientes
          *  
          */
-        private void pintaBtnGrids(Grid gridLetters, Button[] charButtons,char[] arrayChars)
+        private void pintaBtnGrids(Grid gridLetters, Button[] charButtons,char[] arrayChars, string flagTipoBtn)
         {
 
             if (acierto == 0)
             {
                 for (int i = arrayChars.GetLowerBound(0); i <= arrayChars.GetUpperBound(0); i++)
                 {
-                        charButtons = new Button[arrayChars.Length];
-                        gridLetters.ColumnDefinitions.Add(new ColumnDefinition());
-                        charButtons[i] = this.Resources["btnPlayLetter"] as Button;
+                    charButtons = new Button[arrayChars.Length];
+                    gridLetters.ColumnDefinitions.Add(new ColumnDefinition());
+
+                    if (flagTipoBtn.Equals("pistas"))
+                    {
+                        charButtons[i] = this.Resources["btnPlayPistas"] as Button;
                         charButtons[i].Content = arrayChars[i];
-                        Grid.SetColumn(charButtons[i], i);
-                        gridLetters.Children.Add(charButtons[i]);
+                        if (Char.IsLetter((char)charButtons[i].Content))
+                        {
+                            charButtons[i].IsEnabled = false;
+                        }
+                    }
+                    else if (flagTipoBtn.Equals("azar"))
+                    {
+                        charButtons[i] = this.Resources["btnPlayAzar"] as Button;
+                        charButtons[i].Content = arrayChars[i];
+                    }
+
+                    Grid.SetColumn(charButtons[i], i);
+                    gridLetters.Children.Add(charButtons[i]);
+
                     if (Char.IsLetter(arrayChars[i]))
                     {
                        // numLetras++;
@@ -274,6 +286,65 @@ namespace Verbos_Irregulares_Inglés
                 }
 
             }
+        }
+
+        public void btn_ClickedPista (object sender, RoutedEventArgs e)
+        {
+            if(letraButton == "")
+            {
+                MessageBox.Show("Selecciona primero una letra");
+            }
+            else
+            {
+                ((Button)sender).Content = letraButton;
+                letraButton = "";
+                chequeaPalabraGapButtons();
+            }
+        }
+
+        private void chequeaPalabraGapButtons()
+        {
+            bool completa = true;
+            bool bien = true;
+            char[] respuesta = new char[palabraGapChar.Length];
+            for (int i = 0; i < palabraGapChar.Length; i++)
+            {
+                /////REVISAR ESTO
+                ///
+
+
+                if (!Char.IsLetter((Char)(palabraGapButtons[i].Content)))
+                {
+                    completa = false;
+                }
+                else
+                {
+                    respuesta[i] = palabraGapButtons[i].Content;
+                }
+            }
+            if (completa)
+            {
+                for(int i = 0; i < palabraGapChar.Length; i++)
+                {
+                    if (!respuesta[i].Equals(palabraGapChar[i]))
+                    {
+                        bien = false;
+                    }                  
+                }
+                if (bien)
+                {
+                    MessageBox.Show("OUIEAS Bien hecho!!");
+                }
+                else
+                {
+                    MessageBox.Show("Vuelve a intentarlo.");
+                }
+            }
+        }
+
+        private void btn_ClickedAzar(object sender, RoutedEventArgs e)
+        {
+            letraButton = ((Button)sender).Content.ToString();
         }
 
         private char[] randomCharArray(int numLetras, char[] letras)

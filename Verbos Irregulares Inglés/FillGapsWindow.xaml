@@ -7,8 +7,12 @@
         mc:Ignorable="d"
         Title="Fill the gaps" Height="550" Width="800">
     <Window.Resources>
-        <Button x:Key="btnPlayLetter" Tag="button" x:Shared="False" BorderThickness="2" Width="50px" Height="50px">
+        <Button x:Key="btnPlayPistas" Tag="button" x:Shared="False"
+				BorderThickness="2" Width="50px" Height="50px" Click="btn_ClickedPista">
         </Button>
+		<Button x:Key="btnPlayAzar" Tag="button" x:Shared="False"
+				BorderThickness="2" Width="50px" Height="50px" Click="btn_ClickedAzar">
+		</Button>
     </Window.Resources>
     <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="800" Height="550">
         <Grid x:Name="grdPlayPrincipal" VerticalAlignment="Center" HorizontalAlignment="Center" ShowGridLines="True" Width="700" Height="400" Margin="0,75,0,0">
