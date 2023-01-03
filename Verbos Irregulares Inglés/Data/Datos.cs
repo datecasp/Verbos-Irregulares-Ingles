@@ -18,7 +18,7 @@ namespace Verbos_Irregulares_Inglés.Data
                 "Fed", "Fed"),
             new VerbosIngles("Empezar", "Begin",
                 "Began", "Begun"),
-            new VerbosIngles("Ontener", "Get",
+            new VerbosIngles("Conseguir", "Get",
                 "Got", "Got/Gotten"),
             new VerbosIngles("Comer", "Eat",
                 "Ate", "Eaten"),
@@ -26,7 +26,7 @@ namespace Verbos_Irregulares_Inglés.Data
                 "Did", "Done"),
             new VerbosIngles("Soñar", "Dream",
                 "Dreamt", "Dreamt"),
-            new VerbosIngles("Ser/Estar", "Is/Are",
+            new VerbosIngles("Ser Estar", "Is Are",
                 "Was/Were", "Been"),
             new VerbosIngles("Romper", "Break",
                 "Broke", "Broken"),
@@ -67,8 +67,11 @@ namespace Verbos_Irregulares_Inglés.Data
             new VerbosIngles("Tener", "Have",
                 "Had", "Had"),
             new VerbosIngles("Escuchar", "Hear",
-                "Heard", "Heard")});
+                "Heard", "Heard")
+        });
 
-
+        public static char[] abecedario = new char[] { 'a', 'b','c','d','e','f','g','h','i','j','k','l','m'
+            ,'n','o','p','q','r','s','t','u','v','w','x','y','z'
+        };
     }
 }

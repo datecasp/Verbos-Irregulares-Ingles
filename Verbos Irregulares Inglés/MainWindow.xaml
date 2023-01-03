@@ -5,60 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Verbos_Irregulares_Inglés"
         mc:Ignorable="d"
-        Title="Verbos Irregulares Inglés" Height="450" Width="800">
-    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-        <Grid x:Name="grdGridPrincipal" VerticalAlignment="Center" HorizontalAlignment="Center" ShowGridLines="True" Width="700" Height="300">
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-
-            <TextBlock FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="175" Background="Aqua" FontWeight="Bold" Grid.Row="0" Grid.Column="0" TextAlignment="Center">CASTELLANO</TextBlock>
-            <TextBlock FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="175" Background="Aqua" FontWeight="Bold" Grid.Row="0" Grid.Column="1" TextAlignment="Center">PRESENTE</TextBlock>
-            <TextBlock FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="175" Background="Aqua" FontWeight="Bold" Grid.Row="0" Grid.Column="2" TextAlignment="Center">PASADO</TextBlock>
-            <TextBlock FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="175" Background="Aqua" FontWeight="Bold" Grid.Row="0" Grid.Column="3" TextAlignment="Center">PARTICIPIO</TextBlock>
-            <TextBox x:Name="txtCastellano01" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="0" Margin="0,0,0,0" VerticalAlignment="Center" TextAlignment="Center" FontSize="16" Width="175" Height="50" Text="{Binding [0].Castellano, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBox x:Name="txtCastellano02" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1" Margin="0,0,0,0" VerticalAlignment="Center" TextAlignment="Center" FontSize="16" Width="175" Height="50" Text="{Binding [0].Infinitivo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBox x:Name="txtCastellano03" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="2" Margin="0,0,0,0" VerticalAlignment="Center" TextAlignment="Center" FontSize="16" Width="175" Height="50" Text="{Binding [0].Pasado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBox x:Name="txtCastellano04" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="3" Margin="0,0,0,0" VerticalAlignment="Center" TextAlignment="Center" FontSize="16" Width="175" Height="50" Text="{Binding [0].Participio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBox x:Name="txtCastellano05" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="0" Margin="0,0,0,0" VerticalAlignment="Center" TextAlignment="Center" FontSize="16" Width="175" Height="50" Text="{Binding [1].Castellano, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBox x:Name="txtCastellano06" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" Margin="0,0,0,0" VerticalAlignment="Center" TextAlignment="Center" FontSize="16" Width="175" Height="50" Text="{Binding [1].Infinitivo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBox x:Name="txtCastellano07" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="2" Margin="0,0,0,0" VerticalAlignment="Center" TextAlignment="Center" FontSize="16" Width="175" Height="50" Text="{Binding [1].Pasado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBox x:Name="txtCastellano08" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="3" Margin="0,0,0,0" VerticalAlignment="Center" TextAlignment="Center" FontSize="16" Width="175" Height="50" Text="{Binding [1].Participio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBox x:Name="txtCastellano09" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="0" Margin="0,0,0,0" VerticalAlignment="Center" TextAlignment="Center" FontSize="16" Width="175" Height="50" Text="{Binding [2].Castellano, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBox x:Name="txtCastellano10" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="1" Margin="0,0,0,0" VerticalAlignment="Center" TextAlignment="Center" FontSize="16" Width="175" Height="50" Text="{Binding [2].Infinitivo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBox x:Name="txtCastellano11" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="2" Margin="0,0,0,0" VerticalAlignment="Center" TextAlignment="Center" FontSize="16" Width="175" Height="50" Text="{Binding [2].Pasado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBox x:Name="txtCastellano12" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="3" Margin="0,0,0,0" VerticalAlignment="Center" TextAlignment="Center" FontSize="16" Width="175" Height="50" Text="{Binding [2].Participio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBox x:Name="txtCastellano13" HorizontalAlignment="Center" Grid.Row="4" Grid.Column="0" Margin="0,0,0,0" VerticalAlignment="Center" TextAlignment="Center" FontSize="16" Width="175" Height="50" Text="{Binding [3].Castellano, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBox x:Name="txtCastellano14" HorizontalAlignment="Center" Grid.Row="4" Grid.Column="1" Margin="0,0,0,0" VerticalAlignment="Center" TextAlignment="Center" FontSize="16" Width="175" Height="50" Text="{Binding [3].Infinitivo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBox x:Name="txtCastellano15" HorizontalAlignment="Center" Grid.Row="4" Grid.Column="2" Margin="0,0,0,0" VerticalAlignment="Center" TextAlignment="Center" FontSize="16" Width="175" Height="50" Text="{Binding [3].Pasado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBox x:Name="txtCastellano16" HorizontalAlignment="Center" Grid.Row="4" Grid.Column="3" Margin="0,0,0,0" VerticalAlignment="Center" TextAlignment="Center" FontSize="16" Width="175" Height="50" Text="{Binding [3].Participio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBox x:Name="txtCastellano17" HorizontalAlignment="Center" Grid.Row="5" Grid.Column="0" Margin="0,0,0,0" VerticalAlignment="Center" TextAlignment="Center" FontSize="16" Width="175" Height="50" Text="{Binding [4].Castellano, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBox x:Name="txtCastellano18" HorizontalAlignment="Center" Grid.Row="5" Grid.Column="1" Margin="0,0,0,0" VerticalAlignment="Center" TextAlignment="Center" FontSize="16" Width="175" Height="50" Text="{Binding [4].Infinitivo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBox x:Name="txtCastellano19" HorizontalAlignment="Center" Grid.Row="6" Grid.Column="2" Margin="0,0,0,0" VerticalAlignment="Center" TextAlignment="Center" FontSize="16" Width="175" Height="50" Text="{Binding [4].Pasado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBox x:Name="txtCastellano20" HorizontalAlignment="Center" Grid.Row="6" Grid.Column="3" Margin="0,0,0,0" VerticalAlignment="Center" TextAlignment="Center" FontSize="16" Width="175" Height="50" Text="{Binding [4].Participio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        Title="Verbos Irregulares Inglés" Height="550" Width="800">
+    <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="550" Width="800">
+        <!--#region Intro-->
+        <Grid x:Name="grdGridIntroPrincipal" VerticalAlignment="Center" HorizontalAlignment="Center" ShowGridLines="True" Width="700" Height="300" Margin="0,125,0,0">
+            <TextBlock x:Name="txtMainIntro" HorizontalAlignment="Center" TextWrapping="Wrap" Text="English irregular verbs!" VerticalAlignment="Top" FontSize="48" FontWeight="Bold" FontFamily="Ink Free"/>
+            <Button x:Name="btnIntroPlay" Style="{StaticResource btn-left}" Content="Play" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="125,0,0,50" Click="btnIntroPlay_Click"/>
+            <Button x:Name="btnIntroTest" Style="{StaticResource btn-right}" Content="Test" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,125,50" Click="btnIntroTest_Click"/>
         </Grid>
-        <Grid x:Name="grdButtons" Margin="0,25,0,0" >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Button x:Name="btnComprobar" Grid.Column="1" Width="100" Height="50" Click="ComprobarVerbos" Content="Comprobar" HorizontalContentAlignment="Center"/>
-            <Button x:Name="btnVolverJugar" Grid.Column="3" Width="100" Height="50" Click="VolverJugar" Content="Volver a jugar" HorizontalContentAlignment="Center"/>
-        </Grid>
+        <!--#endregion-->
     </StackPanel>
 </Window>

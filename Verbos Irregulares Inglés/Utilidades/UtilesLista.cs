@@ -9,7 +9,14 @@ namespace Verbos_Irregulares_Inglés.Utilidades
 {
     public class UtilesLista
     {
+        // numero de verbos que salen en la pantalla
         public const int NUMVERBOS = 5;
+
+        // numero de verbos totales en la lista
+        public const int NUMTOTALVERBOS = 29;
+
+        // numero de tiempos verbales
+        public const int TIEMPOS = 4;
 
         public List<VerbosIngles> ResetearLista(List<VerbosIngles> lista, int numVerbos)
         {
