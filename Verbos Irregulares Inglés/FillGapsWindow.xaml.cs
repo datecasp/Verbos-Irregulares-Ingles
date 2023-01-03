@@ -1,20 +1,10 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Verbos_Irregulares_Inglés.Modelos;
 using Verbos_Irregulares_Inglés.Servicios;
-using Verbos_Irregulares_Inglés.Utilidades;
 
 namespace Verbos_Irregulares_Inglés
 {
@@ -37,11 +27,8 @@ namespace Verbos_Irregulares_Inglés
         public char[] palabraGapPistasChar;
         public char[] letrasAzarChar;
 
-        public int acierto = 0;
-        public int numLetras = 0;
+        public bool rendirse = false; // flag funcionalidad rendirse
         public string letraButton = "";
-
-        //public string[] palabraTapada;
 
         public FillGapsWindow()
         {
@@ -56,12 +43,10 @@ namespace Verbos_Irregulares_Inglés
 
         private void btnPlay_Click(object sender, RoutedEventArgs e)
         {
-            grdPlayIntro.Visibility = Visibility.Hidden;
-            grdPlayGame.Visibility = Visibility.Visible;
+            grdFillIntro.Visibility = Visibility.Hidden;
+            grdFillGame.Visibility = Visibility.Visible;
+            grdFillLetrasAzar.Visibility = Visibility.Visible;
             btnPlay.Content = "Otra palabra";
-            //Reset variables
-            //txtLineas.Text = "";
-            //Buscamos un verbo aleatorio entre los 29 de la lista
             verboIngles = _verbosInglesService.GetListaVerbosInglesService(29, 1).First();
             atrRandomCompleta = _verbosInglesService.GetAtributoRandom(verboIngles);
             palabraCompleta = atrRandomCompleta.atributo;
@@ -75,14 +60,13 @@ namespace Verbos_Irregulares_Inglés
             palabraGapPistasChar = preparaPalabraGapChar(palabraGapChar);
             letrasAzarChar = completaArrayLetrasAzar(palabraGapPistasChar, palabraGapChar);
             letrasAzarChar = mezclaArrayLetrasAzar(letrasAzarChar);
-            //palabraTapada = new string[palabraArrayChar.Length];
 
             txtPlayGameCompleta.Text = $"The complete word in {getTiempoVerbal(atrRandomCompleta.posicion)} is {palabraCompleta}";
             txtPlayGameGap.Text = $"The gapped word in {getTiempoVerbal(atrRandomGap.posicion)} is...";
             
             
-            pintaBtnGrids(creaGridPalabraGap(palabraGapChar), ref palabraGapButtons, palabraGapPistasChar, "pistas");
-            pintaBtnGrids(creaGridLetrasAzar(letrasAzarChar), ref letrasAzarButtons, letrasAzarChar, "azar");
+            pintaBtnGrids(creaGridPalabraGap(palabraGapChar), ref palabraGapButtons, palabraGapPistasChar, "pistas", rendirse);
+            pintaBtnGrids(creaGridLetrasAzar(letrasAzarChar), ref letrasAzarButtons, letrasAzarChar, "azar", rendirse);
         }
 
         private string getTiempoVerbal(int posicion)
@@ -180,30 +164,29 @@ namespace Verbos_Irregulares_Inglés
             return result;
         }
 
+        /**
+         * 
+         *  Crea Grid para los Buttons con las letras aleatorias de la palabra a encontrar
+         * 
+         */
         private Grid creaGridPalabraGap(char[] palabraGapChar)
         {
             Grid grdPlayBtnLetters = new Grid();
             grdPlayBtnLetters.Margin = new Thickness(0, 175, 0, 0);
             grdPlayBtnLetters.VerticalAlignment = VerticalAlignment.Top;
             grdPlayBtnLetters.HorizontalAlignment = HorizontalAlignment.Center;
-            grdPlayGame.Children.Add(grdPlayBtnLetters);
-            if(grdPlayGame.Children.Count > 3)
+            grdFillGame.Children.Add(grdPlayBtnLetters);
+            if(grdFillGame.Children.Count > 3)
             {
-                grdPlayGame.Children[grdPlayGame.Children.Count - 2].Visibility = Visibility.Hidden;
+                grdFillGame.Children[grdFillGame.Children.Count - 2].Visibility = Visibility.Hidden;
             }
             grdPlayBtnLetters.Width = (palabraGapChar.Length + 1) * 55;
             return grdPlayBtnLetters;
         }
 
-        /***
+        /**
          * 
-         *  private void pintaLetrasAzar(Grid grdPlayBtnLetters)
-         *  
-         *  Método que recibe el array de char con los caracteres de la palabra a acertar.
-         *  
-         *  En función del número de letras de la palabra, muestra 0 a varias como pista
-         *  
-         *  
+         *  Crea Grid para los Buttons de las letras al azar de las que elegir
          * 
          */
         private Grid creaGridLetrasAzar(char[] letrasArrayChar)
@@ -212,32 +195,34 @@ namespace Verbos_Irregulares_Inglés
             grdLetrasAzar.Margin = new Thickness(0, 0, 0, 50);
             grdLetrasAzar.VerticalAlignment = VerticalAlignment.Bottom;
             grdLetrasAzar.HorizontalAlignment = HorizontalAlignment.Center;
-            grdPlayLetrasAzar.Children.Add(grdLetrasAzar);
-            if (grdPlayLetrasAzar.Children.Count > 1)
+            grdFillLetrasAzar.Children.Add(grdLetrasAzar);
+            if (grdFillLetrasAzar.Children.Count > 1)
             {
-                grdPlayLetrasAzar.Children[grdPlayLetrasAzar.Children.Count - 2].Visibility = Visibility.Hidden;
+                grdFillLetrasAzar.Children[grdFillLetrasAzar.Children.Count - 2].Visibility = Visibility.Hidden;
             }
             grdLetrasAzar.Width = (letrasArrayChar.Length + 1) * 55;
             return grdLetrasAzar;
         }
 
-        /***
+        /**
          * 
-         *  private void pintaBtnPalabraGap(Grid grdPlayBtnLetters)
+         *  private void pintaBtnGrids(Grid gridLetters, ref Button[] charButtons
+            ,char[] arrayChars, string flagTipoBtn, bool rendirse)
          *  
-         *  Método que recibe el Grid con las letras de la palabra a rellenar.
+         *  Pinta los Grids de Buttons
          *  
-         *  A través del flag acierto, hace dos posibles tareas: 
-         *  
-         *  -Pintar un Button por cada letra de la palabra a rellenar
-         *  
-         *  -Pintar las letras de la palabra dentro de los botones correspondientes
+         *  @param ->
+         *      + gridLetters - Referencia al grid contenedor de todo
+         *      + charButtons - Array de Buttons a pintar
+         *      + arrayChars - Letras a pintar en los Buttons
+         *      + flagTipoBtn - Flag diferenciador entre los dos Grids del layout
+         *      + rendirse - Flag para mostrar la palabra en caso de rendición 
          *  
          */
-        private void pintaBtnGrids(Grid gridLetters, ref Button[] charButtons,char[] arrayChars, string flagTipoBtn)
+        private void pintaBtnGrids(Grid gridLetters, ref Button[] charButtons
+            ,char[] arrayChars, string flagTipoBtn, bool rendirse)
         {
-
-            if (acierto == 0)
+            if (!rendirse)
             {
                 charButtons = new Button[arrayChars.Length];
                 for (int i = arrayChars.GetLowerBound(0); i <= arrayChars.GetUpperBound(0); i++)
@@ -261,33 +246,32 @@ namespace Verbos_Irregulares_Inglés
 
                     Grid.SetColumn(charButtons[i], i);
                     gridLetters.Children.Add(charButtons[i]);
-
-                    if (Char.IsLetter(arrayChars[i]))
-                    {
-                       // numLetras++;
-                    }
-                    else if (Char.IsSeparator(arrayChars[i]))
-                    {
-                        //palabraTapada[i] = "   ";
-                    }
-                    else
-                    {
-                        //palabraTapada[i] = arrayChars[i].ToString();
-                    }
                 }
             }
-            else
+            else  //Funcionalidad para que muestre la palabra si te rindes
             {
-                //txtLineas.Text = "";
                 for (int i = arrayChars.GetLowerBound(0); i <= arrayChars.GetUpperBound(0); i++)
                 {
 
-                    //txtLineas.Text += palabraTapada[i].ToString();
+                    //Pintar palabraGapButtons con palabraArrayChar
                 }
 
             }
         }
 
+        /**
+         *  void btn_ClickedPista (object sender, RoutedEventArgs e)
+         *  
+         *  Método Click de los Buttons del Grid palabraGapButtons
+         *  
+         *  Muestra la letra seleccionada de letrasAzarButtons en el 
+         *  
+         *  Button seleccionado de palabraGapButtons.
+         *  
+         *  Si no ha seleccionado antes una letra de letrasAzar muestra
+         *  
+         *  MessageBox con advertencia
+         */
         public void btn_ClickedPista (object sender, RoutedEventArgs e)
         {
             if(letraButton == "")
@@ -302,6 +286,13 @@ namespace Verbos_Irregulares_Inglés
             }
         }
 
+        /**
+         *  Comprueba si los Buttons de palabraGapButtons tienen todos
+         *  
+         *  Content asigando y en caso afirmativo comprueba si son
+         *  
+         *  iguales a la referencia de palabraArrayChar original
+         */
         private void chequeaPalabraGapButtons()
         {
             int completa = 0;
@@ -309,11 +300,7 @@ namespace Verbos_Irregulares_Inglés
             char[] respuesta = new char[palabraGapChar.Length];
             for (int i = 0; i < palabraGapChar.Length; i++)
             {
-                /////REVISAR ESTO
-                ///
-
-
-                //if (!Char.IsLetter((Char)(this.palabraGapButtons[i].Content)))
+                
                 if(Char.IsLetter(char.Parse(palabraGapButtons[i].Content.ToString())))
                 {
                     respuesta[i] = char.Parse(palabraGapButtons[i].Content.ToString());
@@ -340,28 +327,17 @@ namespace Verbos_Irregulares_Inglés
             }
         }
 
+
+        /**
+         *  Método Click de los Buttons de letrasAzarButtons
+         *  
+         *  Guarda en la variable global localButton el valor
+         *  
+         *  del Content del Button pulsado
+         */
         private void btn_ClickedAzar(object sender, RoutedEventArgs e)
         {
             letraButton = ((Button)sender).Content.ToString();
-        }
-
-        private char[] randomCharArray(int numLetras, char[] letras)
-        {
-            Random rd = new Random();
-            char[] result = new char[numLetras];
-            for (int i = 0; i < numLetras; i++)
-            {
-                if (i > 0)
-                {
-                    do
-                    {
-                        result[i] = letras[rd.Next(letras.Length)];
-
-                    } while (result[i] == result[i - 1]);
-                }
-            }
-
-            return result;
         }
 
     }

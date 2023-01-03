@@ -15,22 +15,22 @@
 		</Button>
     </Window.Resources>
     <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="800" Height="550">
-        <Grid x:Name="grdPlayPrincipal" VerticalAlignment="Center" HorizontalAlignment="Center" ShowGridLines="True" Width="700" Height="400" Margin="0,75,0,0">
-            <TextBlock x:Name="txtPlayTitle" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Fill the gaps" VerticalAlignment="Top" FontSize="32" FontWeight="Bold" FontFamily="Ink Free"/>
+        <Grid x:Name="grdFillPrincipal" VerticalAlignment="Center" HorizontalAlignment="Center" ShowGridLines="True" Width="700" Height="400" Margin="0,75,0,0">
+            <TextBlock x:Name="txtFillTitle" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Fill the gaps" VerticalAlignment="Top" FontSize="32" FontWeight="Bold" FontFamily="Ink Free"/>
             <!--#region Intro-->
-            <Grid x:Name="grdPlayIntro" Visibility="Collapsed" Width="700" Height="400" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Grid x:Name="grdFillIntro" Visibility="Visible" Width="700" Height="400" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock x:Name="txtPlayIntro01" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Do you dare to complete these words?" VerticalAlignment="Top" FontSize="24" Margin="0,139,0,0"/>
                 <TextBlock x:Name="txtPlayIntro02" HorizontalAlignment="Center" TextWrapping="Wrap" Text="You will get a complete word and an incomplete word." VerticalAlignment="Top" FontSize="24" Margin="0,176,0,0"/>
                 <TextBlock x:Name="txtPlayIntro03" HorizontalAlignment="Center" Margin="0,213,0,0" TextWrapping="Wrap" Text= "Try to complete the words filling the gaps with the letters you will find below." VerticalAlignment="Top" FontSize="24" Height="64" Width="400" TextAlignment="Center" />
             </Grid>
             <!--#endregion-->
             <!--#region FillTheGaps-->
-            <Grid x:Name="grdPlayGame" Visibility="Visible" Width="700" Height="400">
+            <Grid x:Name="grdFillGame" Visibility="Hidden" Width="700" Height="400">
                 <TextBlock x:Name="txtPlayGameCompleta" VerticalAlignment="Top" FontSize="24" Text="Una frase para tiemo de Diseño" TextAlignment="Center" Margin="0,75,0,0"/>
                 <TextBlock x:Name="txtPlayGameGap" VerticalAlignment="Top" FontSize="24" Text="Otra frase para tiemo de Diseño" TextAlignment="Center" Margin="0,125,0,0"/>
                 <!-- Aquí va el grid creado en run time para alojar las letras de palabraGap -->
             </Grid>
-            <Grid x:Name="grdPlayLetrasAzar" Visibility="Visible" Width="700" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+            <Grid x:Name="grdFillLetrasAzar" Visibility="Hidden" Width="700" VerticalAlignment="Bottom" HorizontalAlignment="Center">
                 <!-- Aquí va el grid creado en run time para alojar las letras de letrasAzar -->
             </Grid>
             <!--#endregion-->
