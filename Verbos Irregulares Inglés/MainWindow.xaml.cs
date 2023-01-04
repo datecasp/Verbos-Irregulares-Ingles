@@ -27,7 +27,7 @@ namespace Verbos_Irregulares_Inglés
 
         private void btnIntroTest_Click(object sender, RoutedEventArgs e)
         {
-            TestWindow testWindow = new ();
+            TestWindow2 testWindow = new ();
             testWindow.Show();
         }
 
