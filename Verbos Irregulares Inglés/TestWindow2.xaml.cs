@@ -5,6 +5,7 @@ using Verbos_Irregulares_Inglés.Modelos;
 using Verbos_Irregulares_Inglés.Utilidades;
 using Verbos_Irregulares_Inglés.Servicios;
 using System.ComponentModel;
+using System.Collections.ObjectModel;
 
 namespace Verbos_Irregulares_Inglés
 {
@@ -12,11 +13,16 @@ namespace Verbos_Irregulares_Inglés
     /// Interaction logic for TestWindow.xaml
     /// </summary>
     public partial class TestWindow2 : Window
+
     {
+        private List<VerboCell> listaVerbosMostrada = new List<VerboCell>();
+        
+
+
         private VerbosInglesService _verbosInglesService = new();
         private UtilesLista _utilesLista = new();
         public static List<AtributoRandom> _randomList = new();
-        public List<VerbosIngles>? listaVerbos,listaVerbosMostrada = new();
+        public List<VerbosIngles>? listaVerbos;//,listaVerbosMostrada = new();
         public List<int> listaCeldasAcertadas = new();
         public List<int> listaCeldasMostradas = new();
         
@@ -36,6 +42,7 @@ namespace Verbos_Irregulares_Inglés
 
             RellenarTabla();
 
+            grdGridTestPrincipal.ItemsSource = listaVerbosMostrada;
         }
 
         public void RellenarTabla()
@@ -72,7 +79,7 @@ namespace Verbos_Irregulares_Inglés
 
             CambiarEnabled(listaCeldasMostradas);
             
-            this.DataContext = listaVerbosMostrada;
+            grdGridTestPrincipal.DataContext = listaVerbosMostrada;
 
         }
 
@@ -80,7 +87,7 @@ namespace Verbos_Irregulares_Inglés
         {
             foreach (int celda in listaCeldas)
             {
-                grdGridTestPrincipal.Children[celda].IsEnabled = !grdGridTestPrincipal.Children[celda].IsEnabled;
+                //grdGridTestPrincipal.Children[celda].IsEnabled = !grdGridTestPrincipal.Children[celda].IsEnabled;
             }
         }
 

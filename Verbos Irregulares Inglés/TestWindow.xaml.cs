@@ -41,7 +41,8 @@ namespace Verbos_Irregulares_Inglés
         {
             listaVerbos = _verbosInglesService.GetListaVerbosInglesService(NUMTOTALVERBOS, NUMVERBOS);
             _randomList = _verbosInglesService.GetDatosTabla(listaVerbos);
-            listaVerbosMostrada = _utilesLista.ResetearLista(listaVerbosMostrada, _randomList.Count);
+            //Coment para prueba test2
+            //listaVerbosMostrada = _utilesLista.ResetearLista(listaVerbosMostrada, _randomList.Count);
 
 
             for (int i = 0; i < _randomList.Count; i++)

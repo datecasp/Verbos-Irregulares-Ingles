@@ -18,11 +18,11 @@ namespace Verbos_Irregulares_Inglés.Utilidades
         // numero de tiempos verbales
         public const int TIEMPOS = 4;
 
-        public List<VerbosIngles> ResetearLista(List<VerbosIngles> lista, int numVerbos)
+        public List<VerboCell> ResetearLista(List<VerboCell> lista, int numVerbos)
         {
             for (int i = 0; i < numVerbos; i++)
             {
-                lista.Add(new VerbosIngles("", "","","")) ;
+                lista.Add(new VerboCell("", "","","")) ;
                 lista[i].Castellano = "";
                 lista[i].Infinitivo = "";
                 lista[i].Pasado = "";
