@@ -23,6 +23,20 @@ namespace Verbos_Irregulares_Inglés.Utilidades
             for (int i = 0; i < numVerbos; i++)
             {
                 lista.Add(new VerboCell("", "","","")) ;
+                lista[i].castellano = "";
+                lista[i].infinitivo = "";
+                lista[i].pasado = "";
+                lista[i].participio = "";
+            }
+
+            return lista;
+        }
+
+        public List<VerbosIngles> ResetearLista(List<VerbosIngles> lista, int numVerbos)
+        {
+            for (int i = 0; i < numVerbos; i++)
+            {
+                lista.Add(new VerbosIngles("", "", "", ""));
                 lista[i].Castellano = "";
                 lista[i].Infinitivo = "";
                 lista[i].Pasado = "";

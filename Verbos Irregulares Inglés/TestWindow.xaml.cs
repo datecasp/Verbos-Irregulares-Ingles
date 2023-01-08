@@ -4,6 +4,7 @@ using System.Windows;
 using Verbos_Irregulares_Inglés.Modelos;
 using Verbos_Irregulares_Inglés.Utilidades;
 using Verbos_Irregulares_Inglés.Servicios;
+using System.Windows.Controls;
 
 namespace Verbos_Irregulares_Inglés
 {
@@ -42,7 +43,7 @@ namespace Verbos_Irregulares_Inglés
             listaVerbos = _verbosInglesService.GetListaVerbosInglesService(NUMTOTALVERBOS, NUMVERBOS);
             _randomList = _verbosInglesService.GetDatosTabla(listaVerbos);
             //Coment para prueba test2
-            //listaVerbosMostrada = _utilesLista.ResetearLista(listaVerbosMostrada, _randomList.Count);
+            listaVerbosMostrada = _utilesLista.ResetearLista(listaVerbosMostrada, _randomList.Count);
 
 
             for (int i = 0; i < _randomList.Count; i++)
@@ -72,7 +73,7 @@ namespace Verbos_Irregulares_Inglés
 
             CambiarEnabled(listaCeldasMostradas);
             
-            this.DataContext = listaVerbosMostrada;
+            grdGridTestPrincipal.DataContext = listaVerbosMostrada;
 
         }
 
@@ -90,31 +91,32 @@ namespace Verbos_Irregulares_Inglés
             for(int i = 0; i < listaVerbosMostrada.Count; i++)
             {
                 if(listaVerbosMostrada[i].Castellano.ToLower() == listaVerbos[i].Castellano.ToLower()) 
-                { 
+                {
+                    listaVerbosMostrada[i].Castellano = "BIEN -> " + listaVerbosMostrada[i].Castellano;
                     aciertos++;
-                    listaCeldasAcertadas.Add(i + TIEMPOS);
+                    listaCeldasAcertadas.Add((i + 1 ) * TIEMPOS);
                 }
                 if(listaVerbosMostrada[i].Infinitivo.ToLower() == listaVerbos[i].Infinitivo.ToLower()) 
                 {
                     aciertos++;
-                    listaCeldasAcertadas.Add(i + TIEMPOS + 1);
+                    listaCeldasAcertadas.Add((i + 1) * TIEMPOS + 1);
                 }
                 if (listaVerbosMostrada[i].Pasado.ToLower() == listaVerbos[i].Pasado.ToLower()) 
                 {
                     aciertos++;
-                    listaCeldasAcertadas.Add(i + TIEMPOS + 2);
+                    listaCeldasAcertadas.Add((i + 1) * TIEMPOS + 2);
                 }
                 if (listaVerbosMostrada[i].Participio.ToLower() == listaVerbos[i].Participio.ToLower()) 
                 {
                     aciertos++;
-                    listaCeldasAcertadas.Add(i + TIEMPOS + 3);
+                    listaCeldasAcertadas.Add((i + 1) * TIEMPOS + 3);
                 }
             }
 
             // Restamos los aciertos de las celdas rellenas por el programa
             aciertos -= 5;
 
-            PintaFondos(listaCeldasAcertadas);
+            //PintaFondos(listaCeldasAcertadas);
 
             if(aciertos < 1)
             {
@@ -140,11 +142,89 @@ namespace Verbos_Irregulares_Inglés
 
         public void PintaFondos(List<int> lista)
         {
-            for (int i = 0; i < listaVerbos.Count * 3; i++)
-                if (!lista.Contains(i + 4))
-                {
+            //for (int i = 4; i < listaVerbos.Count * 4; i++)
+            //{
+            //    if (!lista.Contains(i))
+            //    {
+            //        switch (i)
+            //        {
+            //            case 4:
+            //                txtCastellano01.Style = (Style) FindResource("txt-grid-cells-fallo");
+            //                break;
+
+            //        }
+            //    }
+            //}
+
+
+            for (int item = 0; item < listaVerbos.Count; item++)
+            {
+                
+                    if(listaVerbosMostrada[item].Castellano.ToLower() != listaVerbos[item].Castellano.ToLower())
+                    {
+                        TextBox box = new TextBox
+                        {
+                            Style = (Style)FindResource("txt-grid-cells-fallo"),
+                            Text = "ERROR"
+                        };
+                        grdGridTestPrincipal.Children.RemoveAt((item + 1) * TIEMPOS);
+                        grdGridTestPrincipal.Children.Add(box);
+                        Grid.SetColumn(box, 0);
+                        Grid.SetRow(box, item + 1);
+                    listaVerbosMostrada[item].Castellano = "ERROR";
+                    }
+
+                    if (listaVerbosMostrada[item].Infinitivo.ToLower() != listaVerbos[item].Infinitivo.ToLower())
+                    {
+                        TextBox box = new TextBox
+                        {
+                            Style = (Style)FindResource("txt-grid-cells-fallo"),
+                            Text = "ERROR"
+                        };
+                        grdGridTestPrincipal.Children.RemoveAt((item + 1) * TIEMPOS + 1);
+                        grdGridTestPrincipal.Children.Add(box);
+                        Grid.SetColumn(box, 1);
+                        Grid.SetRow(box, item + 1);
+                    listaVerbosMostrada[item].Infinitivo = "ERROR";
+
                 }
-            
+
+                if (listaVerbosMostrada[item].Pasado.ToLower() != listaVerbos[item].Pasado.ToLower())
+                    {
+                        TextBox box = new TextBox
+                        {
+                            Style = (Style)FindResource("txt-grid-cells-fallo"),
+                            Text = "ERROR"
+                        };
+                        grdGridTestPrincipal.Children.RemoveAt((item + 1) * TIEMPOS + 2);
+                        grdGridTestPrincipal.Children.Add(box);
+                        Grid.SetColumn(box, 2);
+                        Grid.SetRow(box, item + 1);
+                    listaVerbosMostrada[item].Pasado = "ERROR";
+
+                }
+
+                if (listaVerbosMostrada[item].Participio.ToLower() != listaVerbos[item].Participio.ToLower())
+                    {
+                        TextBox box = new TextBox
+                        {
+                            Style = (Style)FindResource("txt-grid-cells-fallo"),
+                        };
+                        grdGridTestPrincipal.Children.RemoveAt((item + 1) * TIEMPOS + 3);
+                        grdGridTestPrincipal.Children.Add(box);
+                        Grid.SetColumn(box, 3);
+                        Grid.SetRow(box, item + 1);
+                    
+                    listaVerbosMostrada[item].Participio = "ERROR";
+
+                }
+
+
+
+            }
+            //this.DataContext = null;
+            //this.DataContext = listaVerbosMostrada;
+
         }
 
         private void btnHome_Click(object sender, RoutedEventArgs e)
@@ -154,7 +234,7 @@ namespace Verbos_Irregulares_Inglés
 
         public void VolverJugar(object sender, RoutedEventArgs e)
         {
-            CambiarEnabled(listaCeldasMostradas);
+            //CambiarEnabled(listaCeldasMostradas);
             _randomList.Clear();
             _verbosInglesService.ResetearListaRandoms();
             listaVerbos.Clear();

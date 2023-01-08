@@ -15,7 +15,7 @@ namespace Verbos_Irregulares_Inglés
     public partial class TestWindow2 : Window
 
     {
-        private List<VerboCell> listaVerbosMostrada = new List<VerboCell>();
+        private List<VerboCell> listaVerbosCellMostrada = new List<VerboCell>();
         
 
 
@@ -42,14 +42,17 @@ namespace Verbos_Irregulares_Inglés
 
             RellenarTabla();
 
-            grdGridTestPrincipal.ItemsSource = listaVerbosMostrada;
+            grdGridTestPrincipal.ItemsSource = listaVerbosCellMostrada;
+            
+            //CambiarEnabled(listaCeldasMostradas);
+
         }
 
         public void RellenarTabla()
         {
             listaVerbos = _verbosInglesService.GetListaVerbosInglesService(NUMTOTALVERBOS, NUMVERBOS);
             _randomList = _verbosInglesService.GetDatosTabla(listaVerbos);
-            listaVerbosMostrada = _utilesLista.ResetearLista(listaVerbosMostrada, _randomList.Count);
+            listaVerbosCellMostrada = _utilesLista.ResetearLista(listaVerbosCellMostrada, _randomList.Count);
 
 
             for (int i = 0; i < _randomList.Count; i++)
@@ -57,19 +60,19 @@ namespace Verbos_Irregulares_Inglés
                 switch (_randomList[i].posicion)
                 {
                     case 0:
-                        listaVerbosMostrada[i].Castellano = _randomList[i].atributo;
+                        listaVerbosCellMostrada[i].castellano = _randomList[i].atributo;
                         listaCeldasMostradas.Add((i + 1) * TIEMPOS);
                         break;
                     case 1:
-                        listaVerbosMostrada[i].Infinitivo = _randomList[i].atributo;
+                        listaVerbosCellMostrada[i].infinitivo = _randomList[i].atributo;
                         listaCeldasMostradas.Add(((i + 1) * TIEMPOS) + _randomList[i].posicion);
                         break;
                     case 2:
-                        listaVerbosMostrada[i].Pasado = _randomList[i].atributo;
+                        listaVerbosCellMostrada[i].pasado = _randomList[i].atributo;
                         listaCeldasMostradas.Add(((i + 1) * TIEMPOS) + _randomList[i].posicion);
                         break;
                     case 3:
-                        listaVerbosMostrada[i].Participio = _randomList[i].atributo;
+                        listaVerbosCellMostrada[i].participio = _randomList[i].atributo;
                         listaCeldasMostradas.Add(((i + 1) * TIEMPOS) + _randomList[i].posicion);
                         break;
                     default:
@@ -77,48 +80,48 @@ namespace Verbos_Irregulares_Inglés
                 }
             }
 
-            CambiarEnabled(listaCeldasMostradas);
             
-            grdGridTestPrincipal.DataContext = listaVerbosMostrada;
 
         }
 
         private void CambiarEnabled(List<int> listaCeldas)
         {
-            foreach (int celda in listaCeldas)
+            for (int i = 0; i < listaCeldas.Count; i++)
             {
-                //grdGridTestPrincipal.Children[celda].IsEnabled = !grdGridTestPrincipal.Children[celda].IsEnabled;
+                if (!grdGridTestPrincipal.Items[i].Equals(""))
+                {
+                }
             }
         }
 
         public void ComprobarVerbos(object sender, RoutedEventArgs e)
         {
             int aciertos = 0;
-            for(int i = 0; i < listaVerbosMostrada.Count; i++)
+            for(int i = 0; i < listaVerbosCellMostrada.Count; i++)
             {
-                if(listaVerbosMostrada[i].Castellano.ToLower() == listaVerbos[i].Castellano.ToLower()) 
+                if(listaVerbosCellMostrada[i].castellano.ToLower() == listaVerbos[i].Castellano.ToLower()) 
                 { 
                     aciertos++;
                     listaCeldasAcertadas.Add(i + TIEMPOS);
                 }
-                if(listaVerbosMostrada[i].Infinitivo.ToLower() == listaVerbos[i].Infinitivo.ToLower()) 
+                if(listaVerbosCellMostrada[i].infinitivo.ToLower() == listaVerbos[i].Infinitivo.ToLower()) 
                 {
                     aciertos++;
                     listaCeldasAcertadas.Add(i + TIEMPOS + 1);
                 }
-                if (listaVerbosMostrada[i].Pasado.ToLower() == listaVerbos[i].Pasado.ToLower()) 
+                if (listaVerbosCellMostrada[i].pasado.ToLower() == listaVerbos[i].Pasado.ToLower()) 
                 {
                     aciertos++;
                     listaCeldasAcertadas.Add(i + TIEMPOS + 2);
                 }
-                if (listaVerbosMostrada[i].Participio.ToLower() == listaVerbos[i].Participio.ToLower()) 
+                if (listaVerbosCellMostrada[i].participio.ToLower() == listaVerbos[i].Participio.ToLower()) 
                 {
                     aciertos++;
                     listaCeldasAcertadas.Add(i + TIEMPOS + 3);
                 }
             }
 
-            this.DataContext = listaVerbosMostrada;
+            this.DataContext = listaVerbosCellMostrada;
 
             // Restamos los aciertos de las celdas rellenas por el programa
             aciertos -= 5;
@@ -164,11 +167,12 @@ namespace Verbos_Irregulares_Inglés
 
         public void VolverJugar(object sender, RoutedEventArgs e)
         {
-            CambiarEnabled(listaCeldasMostradas);
+            //CambiarEnabled(listaCeldasMostradas);
             _randomList.Clear();
             _verbosInglesService.ResetearListaRandoms();
             listaVerbos.Clear();
-            listaVerbosMostrada.Clear();
+
+            listaVerbosCellMostrada.Clear();
             listaCeldasMostradas.Clear();
             DataContext = null;
             RellenarTabla();

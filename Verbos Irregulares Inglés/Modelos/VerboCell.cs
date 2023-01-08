@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Verbos_Irregulares_Inglés.Modelos
 {
-    public class VerboCell : VerbosIngles, INotifyPropertyChanged
+    public class VerboCell : INotifyPropertyChanged
     {
         string? _castellano;
         string? _infinitivo;
@@ -22,6 +22,8 @@ namespace Verbos_Irregulares_Inglés.Modelos
             this._pasado = pasado;
             this._participio = participio;
         }
+
+        public VerboCell() { }
 
         public string castellano
         {
@@ -79,9 +81,15 @@ namespace Verbos_Irregulares_Inglés.Modelos
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public void OnPropertyChanged(string propname)
+        public void OnPropertyChanged(string propName)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propname));
+            //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propname));
+
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(propName));
+            }
         }
     }
 }

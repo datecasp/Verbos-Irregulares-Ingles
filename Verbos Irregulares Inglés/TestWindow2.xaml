@@ -7,19 +7,25 @@
         mc:Ignorable="d"
         Title="Full test" Height="550" Width="800">
 
-    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="800">
+    <Grid x:Name="grdLayout" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="rowTestGame"/>
+            <RowDefinition x:Name="rowTestButtons" Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid.Resources>
+            
+        </Grid.Resources>
         <!--#region Test-->
-        <DataGrid x:Name="grdGridTestPrincipal" AutoGenerateColumns="True" IsReadOnly="False" Width="700" 
-                  Height="300" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,35,0,0" 
-                  >
+        <DataGrid x:Name="grdGridTestPrincipal" IsSynchronizedWithCurrentItem="True" Grid.Row="0" AutoGenerateColumns="False" IsReadOnly="False" Margin="0,35,0,35"
+                  DataGrid.ColumnWidth="170" DataGrid.RowHeight="50" CanUserSortColumns="False" ColumnHeaderStyle="{StaticResource dg-header}">
             <DataGrid.Columns>
-                <DataGridTextColumn FontSize="18" FontWeight="Bold" Binding="{Binding castellano, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                <DataGridTextColumn FontSize="18"  FontWeight="Bold" Binding="{Binding infinitivo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                <DataGridTextColumn FontSize="18"  FontWeight="Bold" Binding="{Binding pasado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                <DataGridTextColumn FontSize="18"  FontWeight="Bold" Binding="{Binding participio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTemplateColumn x:Name="colCastellano" Header="Spanish" Width="175" CellTemplate="{StaticResource CastellanoTemplate}" />
+                <DataGridTemplateColumn x:Name="colPresente" Header="Present" Width="175" CellTemplate="{StaticResource PresenteTemplate}"/>
+                <DataGridTemplateColumn x:Name="colPasado" Header="Past simple" Width="175" CellTemplate="{StaticResource PasadoTemplate}"/>
+                <DataGridTemplateColumn x:Name="colParticipio" Header="Participle" Width="175" CellTemplate="{StaticResource ParticipioTemplate}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Grid x:Name="grdButtons" Margin="0,25,0,0" >
+        <Grid x:Name="grdButtons" Grid.Row="1" VerticalAlignment="Center" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
@@ -28,12 +34,12 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Button x:Name="btnComprobar" Style="{StaticResource btn-left}" Grid.Column="1" Width="Auto" Height="50" Click="ComprobarVerbos" Content="Comprobar" HorizontalContentAlignment="Center"/>
+            <Button x:Name="btnComprobar" Style="{StaticResource btn-left}" Grid.Column="1" Width="Auto" Height="50" Click="ComprobarVerbos" Content="Comprobar" HorizontalContentAlignment="Center" VerticalAlignment="Stretch"/>
             <Button x:Name="btnVolverJugar" Style="{StaticResource btn-right}" Grid.Column="3" Width="Auto" Height="50" Click="VolverJugar" Content="Volver a jugar" HorizontalContentAlignment="Center"/>
             <Button x:Name="btnHome" Style="{StaticResource btn-home}" Grid.Column="5" Height="50" HorizontalContentAlignment="Center" Click="btnHome_Click">
                 <Image x:Name="imgBtnHome" Source="Recursos/home.png"/>
             </Button>
         </Grid>
         <!--#endregion-->
-    </StackPanel>
+    </Grid>
 </Window>

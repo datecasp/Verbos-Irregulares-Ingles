@@ -1,15 +1,14 @@
 ﻿<Application x:Class="Verbos_Irregulares_Inglés.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Verbos_Irregulares_Inglés"
+             xmlns:local="clr-namespace:Verbos_Irregulares_Inglés" xmlns:src="clr-namespace:Verbos_Irregulares_Inglés.Modelos"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <Style TargetType="Button">
-            <Setter Property="FontSize" Value="18" />
-            <Setter Property="FontWeight" Value="Bold" />
-            <Setter Property="FontFamily" Value="InkFree" />
-            <Setter Property="FontSize" Value="18"/>
-            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontWeight" Value="ExtraBold" />
+            <Setter Property="FontFamily" Value="Ink Free" />
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="ExtraBold"/>
         </Style>
 
         <Style BasedOn="{StaticResource {x:Type Button}}"
@@ -36,6 +35,87 @@
             <Setter Property="Width" Value="50px"/>
             <Setter Property="Height" Value="50px"/>
         </Style>
+
+        <Style TargetType="DataGridColumnHeader"
+               x:Key="dg-header">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Background" Value="DarkKhaki"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontFamily" Value="Ink Free"/>
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="24" />
+        </Style>
+
+        <Style TargetType="TextBox"
+               x:Key="txt-grid-cells">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontFamily" Value="Ink Free"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Width" Value="175"/>
+            <Setter Property="Height" Value="50"/>
+        </Style>
+
+        <Style 
+               x:Key="txt-grid-cells-fallo">
+            <Setter Property="Control.HorizontalAlignment" Value="Center"/>
+            <Setter Property="Control.VerticalAlignment" Value="Center"/>
+            <Setter Property="Control.FontFamily" Value="Ink Free"/>
+            <Setter Property="Control.FontSize" Value="20"/>
+            <Setter Property="Control.FontWeight" Value="Bold"/>
+            <Setter Property="Control.Width" Value="175"/>
+            <Setter Property="Control.Height" Value="50"/>
+            <Setter Property="Control.Background" Value="LightPink"/>
+        </Style>
+
+        <src:VerboCell x:Key="verboLista" verboLista="{Binding verboLista, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <!--DataTemplates-->
+        <!--Castellano-->
+        <DataTemplate x:Key="CastellanoTemplate" >
+            <TextBox Background="White" Text="{Binding castellano, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                           FontSize="20" FontFamily="Ink Free" FontWeight="Bold" TextAlignment="Center" Width="175" Height="50"
+                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </DataTemplate>
+        <DataTemplate x:Key="EditingCastellanoTemplate">
+            <TextBox Text="{Binding castellano, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                           FontSize="20" FontFamily="Ink Free" FontWeight="Bold" TextAlignment="Center" Width="175" Height="50"
+                           HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+        </DataTemplate>
+        <!--Presente-->
+        <DataTemplate x:Key="PresenteTemplate" >
+            <TextBox Background="White" Text="{Binding infinitivo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                           FontSize="20" FontFamily="Ink Free" FontWeight="Bold" TextAlignment="Center" Width="175" Height="50"
+                           HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+        </DataTemplate>
+        <DataTemplate x:Key="EditingPresenteTemplate">
+            <TextBox Text="{Binding infinitivo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                           FontSize="20" FontFamily="Ink Free" FontWeight="Bold" TextAlignment="Center" Width="175" Height="50"
+                           HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+        </DataTemplate>
+        <!--Pasado-->
+        <DataTemplate x:Key="PasadoTemplate" >
+            <TextBox Background="White" Text="{Binding pasado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                           FontSize="20" FontFamily="Ink Free" FontWeight="Bold" TextAlignment="Center" Width="175" Height="50"
+                           HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+        </DataTemplate>
+        <DataTemplate x:Key="EditingPasadoTemplate">
+            <TextBox Text="{Binding pasado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                           FontSize="20" FontFamily="Ink Free" FontWeight="Bold" TextAlignment="Center" Width="175" Height="50"
+                           HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+        </DataTemplate>
+        <!--Participio-->
+        <DataTemplate x:Key="ParticipioTemplate" >
+            <TextBox Background="White" Text="{Binding participio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                           FontSize="20" FontFamily="Ink Free" FontWeight="Bold" TextAlignment="Center" Width="175" Height="50"
+                           HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+        </DataTemplate>
+        <DataTemplate x:Key="EditingParticipioTemplate">
+            <TextBox Text="{Binding participio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                           FontSize="20" FontFamily="Ink Free" FontWeight="Bold" TextAlignment="Center" Width="175" Height="50"
+                           HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+        </DataTemplate>
         
     </Application.Resources>
 </Application>

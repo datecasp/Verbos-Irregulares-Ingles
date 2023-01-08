@@ -1,0 +1,71 @@
+﻿<Window x:Class="Verbos_Irregulares_Inglés.TestWindow3"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Verbos_Irregulares_Inglés"
+        mc:Ignorable="d"
+        Title="Verbos Irregulares Inglés" Height="550" Width="800">
+    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="800">
+        <!--#region Test-->
+        <Grid x:Name="grdGridTestPrincipal" VerticalAlignment="Center" HorizontalAlignment="Center" ShowGridLines="True" 
+              Width="700" Height="300" Margin="0,35,0,0">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <TextBlock FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="175" Background="Bisque" FontWeight="Bold" TextAlignment="Center">CASTELLANO</TextBlock>
+            <TextBlock FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="175" Background="GreenYellow" FontWeight="Bold" Grid.Column="1" TextAlignment="Center">PRESENTE</TextBlock>
+            <TextBlock FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="175" Background="LightSkyBlue" FontWeight="Bold" Grid.Column="2" TextAlignment="Center">PASADO</TextBlock>
+            <TextBlock FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="175" Background="PaleVioletRed" FontWeight="Bold" Grid.Column="3" TextAlignment="Center">PARTICIPIO</TextBlock>
+            <TextBox x:Name="txtCastellano01" Style="{StaticResource txt-grid-cells}" Grid.Row="1" TextAlignment="Center" Text = "{Binding verboLista[0].castellano, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox x:Name="txtCastellano02" Style="{StaticResource txt-grid-cells}" Grid.Row="1" Grid.Column="1" TextAlignment="Center" Text="{Binding verboLista[0].infinitivo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox x:Name="txtCastellano03" Style="{StaticResource txt-grid-cells}" Grid.Row="1" Grid.Column="2" TextAlignment="Center" Text="{Binding verboLista[0].pasado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox x:Name="txtCastellano04" Style="{StaticResource txt-grid-cells}" Grid.Row="1" Grid.Column="3" TextAlignment="Center" Text="{Binding verboLista[0].participio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox x:Name="txtCastellano05" Style="{StaticResource txt-grid-cells}" Grid.Row="2" TextAlignment="Center" Text="{Binding verboLista[1].castellano, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox x:Name="txtCastellano06" Style="{StaticResource txt-grid-cells}" Grid.Row="2" Grid.Column="1" TextAlignment="Center" Text="{Binding verboLista[1].infinitivo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox x:Name="txtCastellano07" Style="{StaticResource txt-grid-cells}" Grid.Row="2" Grid.Column="2" TextAlignment="Center" Text="{Binding verboLista[1].pasado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox x:Name="txtCastellano08" Style="{StaticResource txt-grid-cells}" Grid.Row="2" Grid.Column="3" TextAlignment="Center" Text="{Binding verboLista[1].participio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox x:Name="txtCastellano09" Style="{StaticResource txt-grid-cells}" Grid.Row="3" TextAlignment="Center" Text="{Binding verboLista[2].castellano, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox x:Name="txtCastellano10" Style="{StaticResource txt-grid-cells}" Grid.Row="3" Grid.Column="1" TextAlignment="Center" Text="{Binding verboLista[2].infinitivo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox x:Name="txtCastellano11" Style="{StaticResource txt-grid-cells}" Grid.Row="3" Grid.Column="2" TextAlignment="Center" Text="{Binding verboLista[2].pasado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox x:Name="txtCastellano12" Style="{StaticResource txt-grid-cells}" Grid.Row="3" Grid.Column="3" TextAlignment="Center" Text="{Binding verboLista[2].participio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox x:Name="txtCastellano13" Style="{StaticResource txt-grid-cells}" Grid.Row="4" TextAlignment="Center" Text="{Binding verboLista[3].castellano, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox x:Name="txtCastellano14" Style="{StaticResource txt-grid-cells}" Grid.Row="4" Grid.Column="1" TextAlignment="Center" Text="{Binding verboLista[3].infinitivo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox x:Name="txtCastellano15" Style="{StaticResource txt-grid-cells}" Grid.Row="4" Grid.Column="2" TextAlignment="Center" Text="{Binding verboLista[3].pasado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox x:Name="txtCastellano16" Style="{StaticResource txt-grid-cells}" Grid.Row="4" Grid.Column="3" TextAlignment="Center" Text="{Binding verboLista[3].participio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox x:Name="txtCastellano17" Style="{StaticResource txt-grid-cells}" Grid.Row="5" TextAlignment="Center" Text="{Binding verboLista[4].castellano, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox x:Name="txtCastellano18" Style="{StaticResource txt-grid-cells}" Grid.Row="5" Grid.Column="1" TextAlignment="Center" Text="{Binding verboLista[4].infinitivo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox x:Name="txtCastellano19" Style="{StaticResource txt-grid-cells}" Grid.Row="5" Grid.Column="2" TextAlignment="Center" Text="{Binding verboLista[4].pasado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox x:Name="txtCastellano20" Style="{StaticResource txt-grid-cells}" Grid.Row="5" Grid.Column="3" TextAlignment="Center" Text="{Binding verboLista[4].participio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        </Grid>
+        <Grid x:Name="grdButtons" Margin="0,25,0,0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btnComprobar" Style="{StaticResource btn-left}" Grid.Column="1" Width="Auto" Height="50" Click="ComprobarVerbos" Content="Comprobar" HorizontalContentAlignment="Center"/>
+            <Button x:Name="btnVolverJugar" Style="{StaticResource btn-right}" Grid.Column="3" Width="Auto" Height="50" Click="VolverJugar" Content="Volver a jugar" HorizontalContentAlignment="Center"/>
+            <Button x:Name="btnHome" Style="{StaticResource btn-home}" Grid.Column="5" Height="50" HorizontalContentAlignment="Center" Click="btnHome_Click">
+                <Image x:Name="imgBtnHome" Source="Recursos/home.png"/>
+            </Button>
+        </Grid>
+        <!--#endregion-->
+    </StackPanel>
+</Window>
