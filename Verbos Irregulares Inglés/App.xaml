@@ -46,8 +46,18 @@
             <Setter Property="FontSize" Value="24" />
         </Style>
 
-        <Style TargetType="TextBox"
-               x:Key="txt-grid-cells">
+        <Style TargetType="TextBlock"
+               x:Key="grid-header">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Background" Value="DarkKhaki"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontFamily" Value="Ink Free"/>
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="24" />
+        </Style>
+
+        <Style TargetType="TextBox" 
+               x:Key="txt-grid-cells" >
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="FontFamily" Value="Ink Free"/>

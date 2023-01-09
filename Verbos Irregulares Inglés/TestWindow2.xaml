@@ -16,15 +16,27 @@
             
         </Grid.Resources>
         <!--#region Test-->
-        <DataGrid x:Name="grdGridTestPrincipal" IsSynchronizedWithCurrentItem="True" Grid.Row="0" AutoGenerateColumns="False" IsReadOnly="False" Margin="0,35,0,35"
-                  DataGrid.ColumnWidth="170" DataGrid.RowHeight="50" CanUserSortColumns="False" ColumnHeaderStyle="{StaticResource dg-header}">
-            <DataGrid.Columns>
-                <DataGridTemplateColumn x:Name="colCastellano" Header="Spanish" Width="175" CellTemplate="{StaticResource CastellanoTemplate}" />
-                <DataGridTemplateColumn x:Name="colPresente" Header="Present" Width="175" CellTemplate="{StaticResource PresenteTemplate}"/>
-                <DataGridTemplateColumn x:Name="colPasado" Header="Past simple" Width="175" CellTemplate="{StaticResource PasadoTemplate}"/>
-                <DataGridTemplateColumn x:Name="colParticipio" Header="Participle" Width="175" CellTemplate="{StaticResource ParticipioTemplate}"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <Grid x:Name="grdGridTestPrincipal" VerticalAlignment="Center" HorizontalAlignment="Center" ShowGridLines="True" 
+              Width="700" Height="300" Margin="0,35,0,35">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock Style="{StaticResource grid-header}" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="175" Background="Bisque" FontWeight="Bold" TextAlignment="Center">CASTELLANO</TextBlock>
+            <TextBlock Style="{StaticResource grid-header}" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="175" Background="GreenYellow" FontWeight="Bold" Grid.Column="1" TextAlignment="Center">PRESENTE</TextBlock>
+            <TextBlock Style="{StaticResource grid-header}" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="175" Background="LightSkyBlue" FontWeight="Bold" Grid.Column="2" TextAlignment="Center">PASADO</TextBlock>
+            <TextBlock Style="{StaticResource grid-header}" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="175" Background="PaleVioletRed" FontWeight="Bold" Grid.Column="3" TextAlignment="Center">PARTICIPIO</TextBlock>
+        </Grid>
         <Grid x:Name="grdButtons" Grid.Row="1" VerticalAlignment="Center" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
